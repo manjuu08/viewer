@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixiv Viewer</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #1a1a1a; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
+button {
+  margin-bottom: 20px; padding: 12px 36px; font-size: 18px;
+  background: #4a9eff; color: #fff; border: none; border-radius: 8px;
+  cursor: pointer; user-select: none;
+}
+button:hover { background: #6ab4ff; }
+button:active { background: #3a8eef; }
+img {
+  max-width: 95vw; max-height: 85vh; border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+</style>
+</head>
+<body>
+<button id="refresh">&#x21bb; Random Image</button>
+<img id="pixiv-img" src="" alt="Loading...">
+<a id="github-link" href="https://github.com/manjuu08/viewer" target="_blank" rel="noopener">GitHub</a>
+
+<style>
+a#github-link {
+  margin-top: 16px; color: #888; font-size: 13px; text-decoration: none;
+}
+a#github-link:hover { color: #ccc; text-decoration: underline; }
+</style>
+<script>
+const img = document.getElementById('pixiv-img');
+const btn = document.getElementById('refresh');
+
+function randomImage() {
+  const num = String(Math.floor(Math.random() * 777) + 1).padStart(3, '0');
+  img.src = `https://manjuu.blob.core.windows.net/manjuu/pixiv/2025/2025-${num}.jpg`;
+}
+
+btn.addEventListener('click', randomImage);
+randomImage();
+</script>
+</body>
+</html>
